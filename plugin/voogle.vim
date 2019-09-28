@@ -10,20 +10,22 @@ let g:loaded_voogle = 1
 
 " Use this to set a custom search engine, like duck duck go
 if !exists("g:search_engine")
-    let g:search_engine = "https://encrypted.google.com/search?q="
+    let g:search_engine = "https://google.com/search?q="
 endif
 
 func! Google(mode)
 
     " Is the browser defined via configuration?
     if exists("g:voogle_browser") && executable(g:voogle_browser)
-        let browser = "!" . g:voogle_browser . " "
+        let browser = "!" . "\"".g:voogle_browser . "\" "
     endif
 
     " Find a browser
     if !exists("browser")
         if has("mac")
             let browser = "!open "
+        elseif executable("vivaldi")
+            let browser = "!vivaldi "
         elseif executable("chromium")
             let browser = "!chromium "
         elseif executable("chrome")
